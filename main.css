@@ -1,0 +1,10 @@
+html {
+  font-family: 'Helvetica Neue', 'Roboto', 'Arial', sans-serif;
+  font-size: 14px;
+}
+
+html /deep/ core-field {
+  border: 1px solid #ddd;
+  margin: 10px;
+  height: 40px;
+}

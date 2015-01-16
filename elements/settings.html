@@ -1,0 +1,59 @@
+<link rel="import" href="db.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-field/core-field.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<polymer-element name="piggybank-settings" attributes="room">
+  <template>
+    <style>
+      #saveButton {
+        color:white;
+        background:green;
+      }
+
+      #settingsPanel {
+        background:white;
+      }
+    </style>
+    <form center vertical layout id="settingsPanel" fullbleed hidden>
+      <core-field center horizontal layout>
+        <input type="text" id="secret" placeholder="Enter your secret" required>
+      </core-field>
+      <paper-button raised>Save</paper-button>
+    </form>
+  </template>
+  <script>
+    var PROFILE = "profile";
+
+    Polymer({
+      room:"",
+      attached:function(){
+        var settingsPanel = this.$.settingsPanel;
+
+        function onValue(value) {
+          if(value === undefined ) {
+
+            settingsPanel.removeAttribute("hidden");
+            settingsPanel.onsubmit = onSubmit.bind(this);
+
+          } else {
+            this.room = value.room;
+          }
+        };
+
+        function onSubmit() {
+          var that = this;
+          var room = this.$.secret.value;
+
+          db.transaction("rw",db.settings,function(){
+            db.settings.add({ id:PROFILE, room:room })
+          }).then(function(){
+            that.room = room;
+            settingsPanel.addAttribute("hidden");
+          });
+        }
+
+        db.settings.get(PROFILE).then(onValue.bind(this));
+      }
+    });
+  </script>
+</polymer-element>

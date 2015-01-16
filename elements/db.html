@@ -1,0 +1,14 @@
+<script src="../bower_components/dexie/dist/latest/Dexie.min.js"></script>
+<script>
+  var db = new Dexie("PiggyBank");
+
+  db.version(1).stores({
+    settings:"id",
+    records:"++id,date,amount,updated"
+  });
+
+  db.open();
+
+
+
+</script>

@@ -1,0 +1,23 @@
+{
+  "name": "piggybank",
+  "version": "0.0.0",
+  "authors": [
+    "Robert Szaloki <r.szaloki@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "peerjs": "~0.3.14",
+    "dexie": "~1.0.2",
+    "polymer": "Polymer/polymer#~0.5.2",
+    "core-field": "Polymer/core-field#~0.5.0",
+    "paper-button": "Polymer/paper-button#~0.5.2"
+  }
+}
